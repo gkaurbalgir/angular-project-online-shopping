@@ -1,0 +1,58 @@
+<div class="m-5">
+    <div *ngIf="orderInfo.isOrderPlaced">
+        <p class="text-center text-info">Your order is placed and will shipped to :
+            {{orderInfo.shippingAddress.firstName}}
+            {{orderInfo.shippingAddress.firstName}}, {{orderInfo.shippingAddress.address.street}},
+            {{orderInfo.shippingAddress.address.city}}, {{orderInfo.shippingAddress.address.state}} -
+            {{orderInfo.shippingAddress.address.zip}}.
+            The products are:</p>
+        <div class="flex-container d-flex flex-wrap">
+            <div class="flex-row" *ngFor="let product of orderInfo.cartProducts">
+                <h2>
+                    <a [href]="'products/'+ product.ProductId" class="text-info">{{product.Name}}</a>
+                </h2>
+                <div class="text-danger">{{product.Price}}{{product.CurrencyCode}}</div>
+            </div>
+        </div>
+    </div>
+    <p class="text-center" *ngIf="isShowCart"><button class="btn btn-success"
+            (click)="continueShopping(cartProducts)">Continue
+            shopping</button></p>
+    <div *ngIf="isShowCart && cartProducts.length > 0">
+        <p class="text-center text-info">Shipping charges: 15 EUR</p>
+        <p class="text-center text-info">Your total is: {{totalCost}} EUR.</p>
+        <p class="text-center"><button class="btn btn-success" (click)="checkout()">Checkout</button></p>
+
+
+    </div>
+    <div class="flex-container d-flex flex-wrap" *ngIf="isShowCart">
+        <div class="flex-row" *ngFor="let product of cartProducts">
+            <h2>
+                <a [href]="'products/'+ product.ProductId" class="text-info">{{product.Name}}</a>
+            </h2>
+            <div class="text-danger">{{product.Price}}{{product.CurrencyCode}}</div>
+            <div><button class="btn btn-danger" (click)="removeFromCart(product)">Remove from Cart</button></div>
+        </div>
+
+    </div>
+    <legend *ngIf="isShowCart && cartProducts.length < 1" class="text-danger text-center">Your cart is empty!!!
+    </legend>
+    <div *ngIf="!isShowCart && !showShippingAddressSection && !orderInfo.isOrderPlaced">
+        <p class="text-center">
+            <button class="btn btn-success" (click)="showCart(product)">Show cart</button>
+        </p>
+        <div class="flex-container d-flex flex-wrap">
+            <div class="flex-row" *ngFor="let product of products">
+                <h2>
+                    <a [href]="'products/'+ product.ProductId" class="text-info">{{product.Name}}</a>
+                </h2>
+                <div class="text-danger">{{product.Price}}{{product.CurrencyCode}}</div>
+                <div><button class="btn btn-success" (click)="addToCart(product, $event)">Add to Cart</button></div>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="showShippingAddressSection">
+        <app-shipping-address [cartProducts]="cartProducts" (valueChange)="countChange($event)">
+        </app-shipping-address>
+    </div>
+</div>

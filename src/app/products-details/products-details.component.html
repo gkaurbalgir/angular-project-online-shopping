@@ -1,0 +1,26 @@
+<div *ngIf="product" class="m-5">
+  <table class="table table-striped m-auto">
+    <tbody>
+      <tr class="row">
+        <td class="col-4">Name:</td>
+        <td class="col-4">{{ product.Name }}</td>
+      </tr>
+      <tr class="row">
+        <td class="col-4">Category: </td>
+        <td class="col-4">{{ product.Category }}</td>
+      </tr>
+      <tr class="row">
+        <td class="col-4">Description: </td>
+        <td class="col-4">{{ product.Description }}</td>
+      </tr>
+      <tr class="row">
+        <td class="col-4">Quantity: </td>
+        <td class="col-4">{{ product.Quantity }}</td>
+      </tr>
+      <tr class="row">
+        <td class="col-4">SupplierName: </td>
+        <td class="col-4">{{ product.SupplierName }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,14 @@
+/* You can add global styles to this file, and also import other style files */
+@import '../node_modules/bootstrap/dist/css/bootstrap.css';
+.flex-container > div {
+    background-color: #FEF0C9;
+    width: 400px;
+    margin: 10px;
+    text-align: center;
+    line-height: 75px;
+    font-size: 30px;
+    padding: 20px;
+}
+.btn + .btn {
+  margin-left: 15px;
+}
