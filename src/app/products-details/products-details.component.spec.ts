@@ -1,6 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterModule } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
 
 import { ProductsDetailsComponent } from './products-details.component';
+
 
 describe('ProductsDetailsComponent', () => {
   let component: ProductsDetailsComponent;
@@ -8,9 +11,10 @@ describe('ProductsDetailsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ProductsDetailsComponent ]
+      declarations: [ProductsDetailsComponent],
+      imports: [RouterModule.forRoot([]), HttpClientModule],
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
