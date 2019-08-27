@@ -24,4 +24,12 @@ describe('ShippingAddressComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should call `emit` function after `onSubmit()` is called', () => {
+    spyOn(component.valueChange, 'emit');
+    component.onSubmit();
+    expect(component.valueChange.emit).toHaveBeenCalled();
+  });
+
+
 });

@@ -28,7 +28,8 @@ export class FeedbackComponent implements OnInit {
   }
 
   onSubmit() {
-    console.warn(this.profileForm.value);
+    // make AJAX call and save
+    console.log(this.profileForm.value);
     this.isFeedbackCompleted = true;
     this.profileForm.reset();
   }

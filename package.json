@@ -9,7 +9,8 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "json-server": "json-server --watch db.json --port 3004",
-    "complete-serve": "concurrently \"npm run json-server\" \"ng serve\""
+    "complete-serve": "concurrently \"npm run json-server\" \"ng serve\"",
+    "complete-test": "concurrently \"npm run json-server\" \"ng test --code-coverage\""
   },
   "private": true,
   "dependencies": {

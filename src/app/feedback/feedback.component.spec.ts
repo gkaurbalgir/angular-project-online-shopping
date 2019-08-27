@@ -24,4 +24,25 @@ describe('FeedbackComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should set `isFeedbackCompleted` as false on init', () => {
+    expect(component.isFeedbackCompleted).toBeFalsy();
+  });
+
+  it('should set `isFeedbackCompleted` as true after `onSubmit` is called', () => {
+    component.onSubmit();
+    expect(component.isFeedbackCompleted).toBeTruthy();
+  });
+
+  it('should reset form after `onSubmit` is called', () => {
+    component.profileForm.value.firstName = "John";
+    expect(component.profileForm.value.firstName).not.toBeNull();
+    component.onSubmit();
+    expect(component.profileForm.value.firstName).toBeNull();
+  });
+
+  afterEach(() => {
+    component.isFeedbackCompleted = false;
+  });
+
 });

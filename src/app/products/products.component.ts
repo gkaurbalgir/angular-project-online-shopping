@@ -15,8 +15,9 @@ export class ProductsComponent implements OnInit {
   totalCost: number;
   orderInfo: any;
   showShippingAddressSection: boolean;
+  cartService: CartService;
 
-  constructor(private productService: ProductsService, private cartService: CartService) { }
+  constructor(private productService: ProductsService) { } 
 
   ngOnInit() {
     this.productService.getProducts().subscribe((data: {}) =>  {
@@ -24,6 +25,7 @@ export class ProductsComponent implements OnInit {
     });
     this.orderInfo = {};
     this.orderInfo.isOrderPlaced = false;
+    this.cartService = new CartService();
   }
 
   addToCart(product, event) {
@@ -58,14 +60,15 @@ export class ProductsComponent implements OnInit {
 
   calculateCost() {
     this.totalCost = 15;
-    for (let i = 0; i < this.cartProducts.length; i++) {
-      this.totalCost += this.cartProducts[i].Price;
-    }
+    if(this.cartProducts && this.cartProducts.length > 0) {
+      for (let i = 0; i < this.cartProducts.length; i++) {
+        this.totalCost += this.cartProducts[i].Price;
+      }
+    }  
   }
 
-  countChange(event) {
-    this.orderInfo = event;
-    console.log("abc", this.orderInfo.isOrderPlaced);
+  orderInfoCallback(orderInfo) {
+    this.orderInfo = orderInfo;
     if(this.orderInfo.isOrderPlaced) {
       this.isShowCart = false;
       this.showShippingAddressSection = false;

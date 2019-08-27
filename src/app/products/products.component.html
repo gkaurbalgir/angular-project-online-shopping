@@ -39,7 +39,7 @@
     </legend>
     <div *ngIf="!isShowCart && !showShippingAddressSection && !orderInfo.isOrderPlaced">
         <p class="text-center">
-            <button class="btn btn-success" (click)="showCart(product)">Show cart</button>
+            <button class="btn btn-success" (click)="showCart()">Show cart</button>
         </p>
         <div class="flex-container d-flex flex-wrap">
             <div class="flex-row" *ngFor="let product of products">
@@ -52,7 +52,7 @@
         </div>
     </div>
     <div *ngIf="showShippingAddressSection">
-        <app-shipping-address [cartProducts]="cartProducts" (valueChange)="countChange($event)">
+        <app-shipping-address [cartProducts]="cartProducts" (valueChange)="orderInfoCallback($event)">
         </app-shipping-address>
     </div>
 </div>
